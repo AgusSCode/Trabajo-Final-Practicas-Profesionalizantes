@@ -1,0 +1,340 @@
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+/* Navbar */
+nav {
+  background: linear-gradient(135deg, #3498db, #2ecc71); /* Mismo gradiente que el header */
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra por debajo */
+  border-top: 2px solid #fff; /* Línea blanca entre el header y el nav */
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  background-color: #1abc9c;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Secciones */
+section {
+  padding: 2rem;
+  flex: 1;
+}
+
+/* Títulos con gradiente */
+h2, h3 {
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Bienvenida */
+.welcome-section {
+  background-color: #ecf0f1;
+  padding: 50px;
+}
+
+.welcome-section h1 {
+  color: #2ecc71;
+}
+
+/* Sección alterna */
+.section-alternate {
+  background-color: #dfe6e9;
+  padding: 50px;
+}
+
+/* Barra de búsqueda */
+#busqueda {
+  width: 80%;
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid #1abc9c;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #ecf0f1;
+}
+
+#busqueda:focus {
+  outline: none;
+  border-color: #16a085;
+}
+
+/* Botón de búsqueda */
+button, .btn {
+  background: linear-gradient(135deg, #1abc9c, #16a085); /* Gradiente verde */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 10px;
+  display: flex;
+  align-items: center; 
+}
+
+button svg, .btn svg {
+  fill: #ffffff; 
+  margin-left: 8px;
+}
+
+button:hover, .btn:hover {
+  background: linear-gradient(135deg, #16a085, #1abc9c); /* Gradiente en hover */
+}
+
+/* Resultados de búsqueda */
+#resultado-busqueda p {
+  background-color: #ffffff;
+  padding: 10px;
+  border-left: 5px solid #2ecc71;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+/* Dropdown categoría */
+#filtro-categoria {
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 1rem;
+  border: 1px solid #1abc9c;
+  border-radius: 5px;
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+}
+
+#filtro-categoria:focus {
+  outline: none;
+  border-color: #16a085;
+}
+
+#filtro-categoria:hover {
+  background-color: #ecf0f1;
+}
+
+/* Resultados de filtro */
+#resultado-filtro p {
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+/* Footer */
+footer {
+  background: linear-gradient(135deg, #3498db, #2ecc71); /* Gradiente como en el header */
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Estilos para el formulario de agregar recetas */
+form#form-receta {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+form#form-receta label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #2ecc71; /* Verde suave */
+}
+
+form#form-receta input[type="text"],
+form#form-receta select,
+form#form-receta textarea,
+form#form-receta input[type="url"] {
+  width: 96%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #1abc9c;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+form#form-receta textarea {
+  resize: vertical; 
+}
+
+form#form-receta #preview-imagen {
+  display: block;
+  margin: 15px auto;
+  width: 200px;
+}
+form#form-receta button[type="submit"],
+form#form-receta button[type="button"] {
+  background-color: #1abc9c; /* Botón verde agua */
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  flex: 1;
+  margin: 0 5px;
+  margin-top: 5px;
+}
+
+form#form-receta button[type="submit"]:hover {
+  background-color: #16a085; /* Oscurecer verde agua al pasar el mouse */
+}
+
+
+/* Contenedor general de receta */
+.receta {
+  border: 1px solid #1abc9c;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.receta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Encabezado de la receta */
+.receta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid transparent;
+}
+
+/* Ingredientes */
+.receta-ingredientes {
+  text-align: left;
+  flex-grow: 2;
+  padding-left: 10px;
+  margin: 0;
+
+}
+
+/* Título de la receta */
+.receta-titulo {
+  font-size: 1.2rem;
+  margin: 0;
+  text-align: left;
+  flex-grow: 1;
+  padding-right: 10px;
+}
+
+/* Botón de despliegue */
+.btn-toggle {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 10px;
+  color: #bdc3c7;
+}
+
+.btn-toggle:hover {
+  color: #16a085;
+}
+
+/* Instrucciones */
+.instrucciones {
+  padding: 10px;
+  background-color: #ffffff;
+  border-top: 1px solid #ddd;
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.receta.active .instrucciones {
+  display: block;
+}
+
+.receta.active .receta-header {
+  border-bottom: 1px solid #ddd;
+}
+
+@media only screen and (max-width: 600px) {
+  nav ul li {
+    display: block;
+    margin: 5px 0;
+  }
+
+  #busqueda {
+    width: 100%;
+  }
+
+  button, .btn {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  section {
+    padding: 1rem;
+  }
+
+  header h1, nav ul li a {
+    font-size: 1.5rem;
+  }
+}
+.receta-imagen {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+    float: left; /* Para alinear la imagen a la izquierda del texto */
+}
+.responsive-video {
+    width: 100%;     /* Ajusta el video al ancho del contenedor */
+    height: auto;    /* Mantiene la relación de aspecto */
+    max-width: 800px; /* Ajuste opcional para limitar el ancho máximo */
+}

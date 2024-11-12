@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías - Mis Recetas Favoritas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Explorar por Categoría</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="categorias.html">Categorías</a></li>
+            <li><a href="receta.html">Recetas</a></li>
+			<li><a href="informacion.html">Información</a></li>
+        </ul>
+    </nav>
+	<!-- <button onclick="restablecerRecetas()">Restablecer recetas</button> -->
+    <section>
+        <h2>Filtrar por Categoría</h2>
+        <select id="filtro-categoria">
+            <option value="todas">Todas</option>
+            <option value="entradas">Entradas</option>
+            <option value="platos-principales">Platos Principales</option>
+            <option value="postres">Postres</option>
+            <option value="bebidas">Bebidas</option>
+        </select>
+        <div id="resultado-filtro"></div>
+	
+ 
+    </section>
+    <footer>
+        <p>Mis Recetas Favoritas &copy; 2024</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Receta - Mis Recetas Favoritas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mis Recetas Favoritas</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="categorias.html">Categorías</a></li>
+            <li><a href="receta.html">Recetas</a></li>
+			<li><a href="informacion.html">Información</a></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>Agregar una Nueva Receta</h2>
+        <form id="form-receta">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="entradas">Entradas</option>
+                <option value="platos-principales">Platos Principales</option>
+                <option value="postres">Postres</option>
+                <option value="bebidas">Bebidas</option>
+            </select>
+
+            <label for="ingredientes">Ingredientes (separados por comas):</label>
+            <textarea id="ingredientes" name="ingredientes" rows="4" required></textarea>
+
+            <label for="instrucciones">Instrucciones (separadas por saltos de línea):</label>
+            <textarea id="instrucciones" name="instrucciones" rows="4" required></textarea>
+
+            <label for="imagen-url">URL de la imagen de la receta:</label>
+            <input type="url" id="imagen-url" name="imagen-url" placeholder="http://example.com/imagen.jpg">
+            <img id="preview-imagen" src="img/ejemplo.png" alt="Vista previa de la imagen" width="200">
+
+            <button type="submit">Agregar Receta</button>
+            <button type="button" onclick="cancelarEdicion()">Cancelar</button>
+        </form>
+
+        <script>
+            // Cargar receta existente si se va a modificar
+            function cargarReceta() {
+                const receta = JSON.parse(localStorage.getItem("recetaAModificar"));
+                if (receta) {
+                    document.getElementById("titulo").value = receta.titulo; 
+                    document.getElementById("categoria").value = receta.categoria;
+                    document.getElementById("ingredientes").value = receta.ingredientes;
+                    document.getElementById("instrucciones").value = receta.instrucciones;
+                    document.getElementById("imagen-url").value = receta.imagenURL || "";
+                    document.getElementById("preview-imagen").src = receta.imagenURL || "img/ejemplo.png";
+                }
+            }
+			
+  // Mostrar el mensaje indicativo para las instrucciones
+    const instruccionesInput = document.getElementById('instrucciones');
+    if (instruccionesInput) {
+        const instruccionesHelpText = document.createElement('p');
+        instruccionesHelpText.innerText = "Ingrese cada paso y presione 'Enter' después de cada uno para agregarlo.";
+        instruccionesHelpText.style.color = "gray";
+        instruccionesHelpText.style.fontSize = "12px";
+        instruccionesInput.parentNode.insertBefore(instruccionesHelpText, instruccionesInput.nextSibling);
+    }
+
+            // Actualizar vista previa de la imagen al cambiar la URL
+            document.getElementById("imagen-url").addEventListener("input", function() {
+                const url = document.getElementById("imagen-url").value;
+                document.getElementById("preview-imagen").src = url || "img/ejemplo.png";
+            });
+
+            // Manejar el envío del formulario para agregar o modificar receta
+            document.getElementById("form-receta").onsubmit = function(e) {
+                e.preventDefault();
+
+                const nuevaReceta = {
+                    titulo: document.getElementById("titulo").value, // Cambiado a "titulo"
+                    categoria: document.getElementById("categoria").value,
+                    ingredientes: document.getElementById("ingredientes").value,
+                    instrucciones: document.getElementById("instrucciones").value,
+                    imagenURL: document.getElementById("imagen-url").value || null,
+                };
+
+                // Verificar si se está modificando una receta existente o agregando una nueva
+                const recetaModificada = localStorage.getItem("recetaAModificar");
+
+                if (recetaModificada) {
+                    // Actualizar receta existente en el array de recetas
+                    const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+                    const index = recetas.findIndex(r => r.titulo === JSON.parse(recetaModificada).titulo);
+
+                    if (index > -1) {
+                        recetas[index] = nuevaReceta;
+                    }
+                    localStorage.setItem("recetas", JSON.stringify(recetas));
+                    alert("Receta modificada correctamente");
+                } else {
+                    // Agregar nueva receta a localStorage
+                    const recetas = JSON.parse(localStorage.getItem("recetas")) || [];
+                    recetas.push(nuevaReceta);
+                    localStorage.setItem("recetas", JSON.stringify(recetas));
+                    alert("Receta agregada correctamente");
+                }
+
+                // Limpiar la receta temporal y redirigir al listado de recetas
+                localStorage.removeItem("recetaAModificar");
+                window.location.href = "categorias.html";
+            };
+
+            // Función para cancelar la edición y volver al listado de recetas
+            function cancelarEdicion() {
+                localStorage.removeItem("recetaAModificar");
+                window.location.href = "categorias.html";
+            }
+
+            window.onload = cargarReceta;
+        </script>
+    </section>
+    <footer>
+        <p>Mis Recetas Favoritas &copy; 2024</p>
+    </footer>
+</body>
+</html>
